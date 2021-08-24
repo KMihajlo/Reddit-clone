@@ -29,15 +29,15 @@ public class RedditCloneApplication {
 	@Profile("development")
 	CommandLineRunner commandLineRunner(){
 		return args -> {
-			System.out.println("THIS IS IN " + redditCloneConfiguration.getStage() + " stage");
+			System.out.println("THIS IS IN " + redditCloneConfiguration.getStage1() + " stage");
 		};
 	}
 
 	@Bean
-	@Profile({"production","development"})
+	@Profile("production")
 	CommandLineRunner lineRunner(){
 		return args -> {
-			System.out.println("THIS IS IN " + redditCloneConfiguration.getStage() + " stage");
+			System.out.println("THIS IS IN " + redditCloneConfiguration.getStage2() + " stage");
 		};
 	}
 
