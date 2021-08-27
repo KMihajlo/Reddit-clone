@@ -1,3 +1,4 @@
+#!/bin/bash
 # just to be used the first time
 # "--name" choose a name for your container
 # "port:port" choose a port to place grafana container
