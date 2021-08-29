@@ -1,5 +1,5 @@
-CREATE DATABASE  IF NOT EXISTS `springit`;
-USE `springit`;
+CREATE DATABASE  IF NOT EXISTS `reddit-clone`;
+USE `reddit-clone`;
 
 --
 -- Table structure for table `comment`
