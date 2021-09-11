@@ -1,0 +1,248 @@
+/* CUSTOM CSS */
+
+.bg-spring {
+    background-color: #1A1A1B!important;
+    border-top: 7px solid #1A1A1B;
+}
+
+nav .nav-item {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    padding-right:10px;
+}
+
+button.nav-link {
+    background: #1A1A1B;
+    border:none;
+    cursor: pointer;
+}
+
+body {
+    background: #f4f8fb;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Jumbotron */
+.jumbotron {
+    background: #4e555b;
+    color:#ffffff;
+}
+.jumbotron {
+    padding: 80px;
+    padding-bottom: 40px;
+}
+.jumpbotron h2 {
+    font-family: 'Oswald', sans-serif;
+}
+.jumbotron a, .jumbotron a:visited {
+    color:#ffffff
+}
+.jumbotron p {
+    font-size: 15px;
+}
+
+
+/* Links */
+.position {
+    color:darkgray;
+
+}
+.votecount {
+    color:darkgray;
+    clear: both;
+    font-size: 18px;
+    vertical-align: middle;
+}
+
+.upvote {
+    vertical-align: top;
+}
+
+.downvote {
+    vertical-align: bottom;
+}
+
+a.upvote , a.downvote {
+    color:darkgrey;
+}
+
+.title {
+    margin:0px;
+    color: #1E1E24;
+    font-style: italic;
+    font-size: 18px;
+}
+.tagline {
+    font-size:13.5px;
+    color: #8A8D91;
+}
+.link_title{
+    font-size: 23px;
+}
+
+a.comments {
+    font-size: 14px;
+    color: #6c757d;
+}
+a.share {
+    font-size: 14px;
+    padding-left: 10px;
+    color: #6c757d;
+}
+
+
+.domain  {
+    color:darkgrey;
+    font-size:13px;
+    padding-left:10px;
+}
+.domain a, .domain a:hover, .domain a:visited {
+    color:darkgrey;
+}
+
+/* comments */
+.comments .title {
+    border-bottom: 1px dotted #000000;
+    margin-bottom: 20px;
+    color: #8A8D91;
+}
+.addcomment {
+    margin-bottom:20px;
+}
+.comment {
+    margin-top:20px;
+}
+.comment .body {
+    margin: 0 0 5px 0;
+    padding:0px;
+    font-size: 15.5px;
+}
+.comment .permalink {
+    color: #c82333;
+    font-size: 13.5px;
+}
+.comment .like {
+    padding-left:10px;
+    color: #c82333;
+    font-size: 13.5px;
+}
+
+button.nav-link:hover{
+    background-color: #c82333;
+    transition: 0.2s;
+}
+
+/* custom css to override the bootstrap css
+________________________________________________________________*/
+
+.navbar-dark .navbar-brand:hover, .navbar-dark .navbar-brand:focus {
+    color: #dc3545;
+    transition: 0.2s;
+}
+
+.btn-success:not(:disabled):not(.disabled):active:focus, .btn-success:not(:disabled):not(.disabled).active:focus,
+.show > .btn-success.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem #dc3545;
+}
+.btn-success:not(:disabled):not(.disabled):active, .btn-success:not(:disabled):not(.disabled).active,
+.show > .btn-success.dropdown-toggle {
+    color: #fff;
+    background-color: #c82333;
+    border-color: #dc3545;
+}
+
+.btn-success:focus, .btn-success.focus {
+    box-shadow: 0 0 0 0.2rem #c82333;
+}
+
+.btn-success.disabled, .btn-success:disabled {
+    color: #fff;
+    background-color: #c82333;
+    border-color: #dc3545;
+}
+
+.btn-success {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-success:hover {
+    color: #fff;
+    background-color: #c82333;
+    border-color: #c82333;
+    transition: 0.2s;
+    transform: scale(1.1);
+}
+
+.navbar-dark .navbar-brand {
+    color: #fff;
+}
+
+
+.shine{
+    -webkit-mask-image: linear-gradient(-75deg, rgba(0,0,0,.5) 30%, #fff 55%, rgba(0,0,0,.5) 70%);
+    -webkit-mask-size: 200%;
+    animation: shine 2s linear infinite;
+}
+@keyframes shine {
+    from { -webkit-mask-position: 150%; }
+    to { -webkit-mask-position: -50%; }
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #c82333;
+    border-color: #c82333;
+    transition: 0.2s;
+    transform: scale(1.1);
+}
+
+.btn-primary:focus, .btn-primary.focus {
+    box-shadow: 0 0 0 0.2rem #c82333;
+}
+
+.btn-primary.disabled, .btn-primary:disabled {
+    color: #fff;
+    background-color: #c82333;
+    border-color: #dc3545;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
+.show > .btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #c82333;
+    border-color: #dc3545;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem #dc3545;
+}
+
+.author{
+    color: #dc3545;
+    font-size: 12.5px;
+}
+
+.link_inside{
+    color: #e4606d;
+    font-size: 13.5px;
+    font-family: 'Oswald', sans-serif;
+}
+.clock{
+    font-size: 12.5px;
+}
+/* Registration */
+@media(min-width: 768px) {
+    .field-label-responsive {
+        padding-top: .5rem;
+        text-align: right;
+    }
+}
