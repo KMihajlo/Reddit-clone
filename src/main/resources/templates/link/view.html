@@ -29,7 +29,7 @@
                     </p>
                     <p class="tagline ">submitted
                         <time th:title="${link.getCreationDate()}" th:datetime="${link.getCreationDate()}" class="live-timestamp" th:text="${link.getPrettyTime()}">1 hour(s)</time> by
-                        <a href="/" class="author">therealdanvega</a>
+                        <a href="/" class="author" th:text="${link.getCreatedBy()}">therealdanvega</a>
                         <span class="userattrs"></span>
                     </p>
                     <p><a class="link_inside" th:href="${link.url}" th:text="${link.url}" target="_blank"></a></p>
@@ -73,5 +73,6 @@
 
         </div>
 
+        <div th:replace="~{layouts/main_layout :: footer}"></div>
     </body>
 </html>

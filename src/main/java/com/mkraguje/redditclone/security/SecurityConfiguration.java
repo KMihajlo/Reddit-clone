@@ -7,6 +7,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+import javax.validation.constraints.Email;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -29,10 +31,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .antMatchers("/h2-console/**").permitAll()
                 .and()
                 .formLogin()
-                    .loginPage("/login").permitAll();
-//                .and()
-//                    .csrf().disable()
-//                    .headers().frameOptions().disable();
+                    .loginPage("/login").permitAll()
+                    .usernameParameter("email")
+                    .and()
+                .logout()
+                    .and()
+                .rememberMe()
+                .and()
+                    .csrf().disable()
+                    .headers().frameOptions().disable();
     }
 
     @Override
