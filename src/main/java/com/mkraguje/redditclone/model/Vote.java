@@ -1,23 +1,24 @@
 package com.mkraguje.redditclone.model;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
-@Data
+@RequiredArgsConstructor
+@Getter @Setter
+@ToString
 @NoArgsConstructor
-public class Vote {
+public class Vote extends Auditable{
 
     @Id
     @GeneratedValue
     private Long id;
-    private int vote;
 
-    // User
-    // Link
+    @NonNull
+    private short direction;
 
+    @NonNull
+    @ManyToOne
+    private Link link;
 }
