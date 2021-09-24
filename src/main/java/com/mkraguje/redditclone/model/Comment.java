@@ -12,12 +12,9 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 
-
 @Entity
 @RequiredArgsConstructor
-@Getter
-@Setter
-@ToString
+@Getter @Setter
 @NoArgsConstructor
 public class Comment extends Auditable{
 

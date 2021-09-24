@@ -1,5 +1,6 @@
 package com.mkraguje.redditclone.controller;
 
+import com.mkraguje.redditclone.model.Comment;
 import com.mkraguje.redditclone.model.Link;
 import com.mkraguje.redditclone.repository.LinkRepository;
 import org.slf4j.Logger;
@@ -38,7 +39,11 @@ public class LinkController {
         LOGGER.info("'/link/{id}' Route invoked...");
         Optional<Link> link = linkRepository.findById(id);
         if(link.isPresent()){
-            model.addAttribute("link", link.get());
+            Link currentLink = link.get();
+            Comment comment = new Comment();
+            comment.setLink(currentLink);
+            model.addAttribute("comment", comment);
+            model.addAttribute("link", currentLink);
             model.addAttribute("success", model.containsAttribute("success"));
             return "link/view";
         }else{
