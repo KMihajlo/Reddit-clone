@@ -1,5 +1,6 @@
 package com.mkraguje.redditclone.bootstrap;
 
+import com.mkraguje.redditclone.model.Comment;
 import com.mkraguje.redditclone.model.Link;
 import com.mkraguje.redditclone.model.Role;
 import com.mkraguje.redditclone.model.User;
@@ -52,8 +53,18 @@ public class DatabaseLoader implements CommandLineRunner {
         links.put("File download example using Spring REST Controller","https://www.jeejava.com/file-download-example-using-spring-rest-controller/");
 
         links.forEach((k,v) -> {
-            linkRepository.save(new Link(k,v));
+            Link link = new Link(k, v);
+            linkRepository.save(link);
+
             // we will do something with comments later
+            Comment spring = new Comment("Thank you for this link related to Spring Boot. I love it, great post!", link);
+            Comment security = new Comment("I love that you are talking about Spring Security", link);
+            Comment pwa = new Comment("What is this Progressive Web App thing all about? PWAs sound really cool.", link);
+            Comment[] comments = {spring, security, pwa};
+            for(Comment comment : comments){
+                commentRepository.save(comment);
+                link.addComment(comment);
+            }
         });
 
         long linkCount = linkRepository.count();
