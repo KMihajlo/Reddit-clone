@@ -21,4 +21,8 @@ public class Vote extends Auditable{
     @NonNull
     @ManyToOne
     private Link link;
+
+    @NonNull
+    @OneToOne
+    private User user;
 }

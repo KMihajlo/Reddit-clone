@@ -2,21 +2,15 @@ package com.mkraguje.redditclone.model;
 
 import com.mkraguje.redditclone.service.BeanUtil;
 import lombok.*;
-import org.hibernate.validator.constraints.*;
 import org.ocpsoft.prettytime.PrettyTime;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @RequiredArgsConstructor
@@ -41,6 +35,10 @@ public class Link extends Auditable{
 
     @OneToMany(mappedBy = "link")
     private List<Vote> votes = new ArrayList<>();
+
+    public void addVote(Vote vote){
+        votes.add(vote);
+    }
 
     private int voteCount = 0;
 

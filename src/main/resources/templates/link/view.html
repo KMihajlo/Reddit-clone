@@ -25,7 +25,7 @@
                         <a class="title link_title" th:href="${link.url}" th:text="${link.title}" target="_blank">
                             What's new in Spring Boot 2?
                         </a>
-                        <span class="domain">(<a th:href="${link.url}" th:text="${link.getDomainName()}">therealdanvega.com</a>)</span>
+                        <span class="domain">(<a th:href="|http://${link.getDomainName()}|" th:text="${link.getDomainName()}" target="_blank">therealdanvega.com</a>)</span>
                     </p>
                     <p class="tagline ">submitted
                         <time th:title="${link.getCreationDate()}" th:datetime="${link.getCreationDate()}" class="live-timestamp" th:text="${link.getPrettyTime()}">1 hour(s)</time> by
