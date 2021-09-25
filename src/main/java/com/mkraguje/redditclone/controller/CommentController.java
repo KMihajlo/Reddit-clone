@@ -2,7 +2,8 @@ package com.mkraguje.redditclone.controller;
 
 import com.mkraguje.redditclone.model.Comment;
 import com.mkraguje.redditclone.repository.CommentRepository;
-import com.mkraguje.redditclone.repository.LinkRepository;
+import com.mkraguje.redditclone.service.CommentService;
+import com.mkraguje.redditclone.service.LinkService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.annotation.Secured;
@@ -17,12 +18,12 @@ public class CommentController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LinkController.class);
 
-    private LinkRepository linkRepository;
-    private CommentRepository commentRepository;
+    private LinkService linkService;
+    private CommentService commentService;
 
-    public CommentController(LinkRepository linkRepository, CommentRepository commentRepository) {
-        this.linkRepository = linkRepository;
-        this.commentRepository = commentRepository;
+    public CommentController(LinkService linkService, CommentService commentService) {
+        this.linkService = linkService;
+        this.commentService = commentService;
     }
 
     @Secured({"ROLE_USER"})
@@ -31,7 +32,7 @@ public class CommentController {
         if(bindingResult.hasErrors()){
             LOGGER.info("There was a problem adding a new comment.");
         }else {
-            commentRepository.save(comment);
+            commentService.save(comment);
             LOGGER.info("New comment was successfully saved.");
         }
         return "redirect:/link/" + comment.getLink().getId();

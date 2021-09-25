@@ -15,15 +15,15 @@ public class RedditCloneApplication {
 		SpringApplication.run(RedditCloneApplication.class, args);
 	}
 
-	@Bean
-	public WebMvcConfigurer corsConfigurer() {
-		return new WebMvcConfigurer() {
-			@Override
-			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/vote/link/{linkID}/direction/{direction}/votecount/{voteCount}").allowedOrigins("http://localhost:8080");
-			}
-		};
-	}
+//	@Bean
+//	public WebMvcConfigurer corsConfigurer() {
+//		return new WebMvcConfigurer() {
+//			@Override
+//			public void addCorsMappings(CorsRegistry registry) {
+//				registry.addMapping("/vote/link/{linkID}/direction/{direction}/votecount/{voteCount}").allowedOrigins("http://localhost:8080");
+//			}
+//		};
+//	}
 
 	@Bean
 	PrettyTime prettyTime(){
@@ -32,6 +32,7 @@ public class RedditCloneApplication {
 
 	// TODO * Configuring this bean should not be needed once Spring Boot's Thymeleaf starter includes configuration
 	// TODO   for thymeleaf-extras-springsecurity5 (instead of thymeleaf-extras-springsecurity4)
+
 	@Bean
 	public SpringSecurityDialect securityDialect() {
 		return new SpringSecurityDialect();
