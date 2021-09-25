@@ -2,7 +2,7 @@ package com.mkraguje.redditclone.controller;
 
 import com.mkraguje.redditclone.model.Comment;
 import com.mkraguje.redditclone.model.Link;
-import com.mkraguje.redditclone.repository.LinkRepository;
+import com.mkraguje.redditclone.service.LinkService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -21,23 +21,23 @@ public class LinkController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LinkController.class);
 
-    private LinkRepository linkRepository;
+    private LinkService linkService;
 
-    public LinkController(LinkRepository linkRepository) {
-        this.linkRepository = linkRepository;
+    public LinkController(LinkService linkService) {
+        this.linkService = linkService;
     }
 
     @GetMapping("/")
     public String list(Model model){
         LOGGER.info("'/' Route invoked...");
-        model.addAttribute("links", linkRepository.findAll());
+        model.addAttribute("links", linkService.findAll());
         return "link/list";
     }
 
     @GetMapping("/link/{id}")
     public String read(@PathVariable Long id, Model model){
         LOGGER.info("'/link/{id}' Route invoked...");
-        Optional<Link> link = linkRepository.findById(id);
+        Optional<Link> link = linkService.findById(id);
         if(link.isPresent()){
             Link currentLink = link.get();
             Comment comment = new Comment();
@@ -68,7 +68,7 @@ public class LinkController {
             return "/link/submit";
         }else{
             // save the link
-            linkRepository.save(link);
+            linkService.save(link);
             LOGGER.info("New link was saved successfully");
             redirectAttributes
                     .addAttribute("id", link.getId())
