@@ -8,6 +8,7 @@ import com.mkraguje.redditclone.repository.UserRepository;
 import com.mkraguje.redditclone.repository.VoteRepository;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,6 +31,7 @@ public class VoteController {
     }
 
     // http://lovalhost:8080/vote/link/1/direction/-1/voteCount/5
+    @CrossOrigin(origins = "http://localhost:8080")
     @Secured({"ROLE_USER"})
     @GetMapping("/vote/link/{linkID}/direction/{direction}/votecount/{voteCount}")
     public int vote(@PathVariable Long linkID, @PathVariable short direction, @PathVariable int voteCount, @AuthenticationPrincipal User user){

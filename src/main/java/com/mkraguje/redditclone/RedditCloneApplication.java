@@ -4,6 +4,8 @@ import org.ocpsoft.prettytime.PrettyTime;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 
 @SpringBootApplication
@@ -11,6 +13,16 @@ public class RedditCloneApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(RedditCloneApplication.class, args);
+	}
+
+	@Bean
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("/vote/link/{linkID}/direction/{direction}/votecount/{voteCount}").allowedOrigins("http://localhost:8080");
+			}
+		};
 	}
 
 	@Bean
