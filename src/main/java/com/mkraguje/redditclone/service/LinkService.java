@@ -27,4 +27,8 @@ public class LinkService {
     public Link save(Link link){
         return linkRepository.save(link);
     }
+
+    public Long count(){
+        return linkRepository.count();
+    }
 }

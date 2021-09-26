@@ -4,10 +4,10 @@ import com.mkraguje.redditclone.model.Comment;
 import com.mkraguje.redditclone.model.Link;
 import com.mkraguje.redditclone.model.Role;
 import com.mkraguje.redditclone.model.User;
-import com.mkraguje.redditclone.repository.CommentRepository;
-import com.mkraguje.redditclone.repository.LinkRepository;
-import com.mkraguje.redditclone.repository.RoleRepository;
-import com.mkraguje.redditclone.repository.UserRepository;
+import com.mkraguje.redditclone.service.CommentService;
+import com.mkraguje.redditclone.service.LinkService;
+import com.mkraguje.redditclone.service.RoleService;
+import com.mkraguje.redditclone.service.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -19,17 +19,19 @@ import java.util.Map;
 
 @Component
 public class DatabaseLoader implements CommandLineRunner {
-    private LinkRepository linkRepository;
-    private CommentRepository commentRepository;
-    private UserRepository userRepository;
-    private RoleRepository roleRepository;
 
+    private LinkService linkService;
+    private CommentService commentService;
+    private UserService userService;
+    private RoleService roleService;
 
-    public DatabaseLoader(LinkRepository linkRepository, CommentRepository commentRepository, UserRepository userRepository, RoleRepository roleRepository) {
-        this.linkRepository = linkRepository;
-        this.commentRepository = commentRepository;
-        this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
+    private Map<String, User> users = new HashMap<>();
+
+    public DatabaseLoader(LinkService linkService, CommentService commentService, UserService userService, RoleService roleService) {
+        this.linkService = linkService;
+        this.commentService = commentService;
+        this.userService = userService;
+        this.roleService = roleService;
     }
 
     @Override
@@ -53,21 +55,30 @@ public class DatabaseLoader implements CommandLineRunner {
         links.put("File download example using Spring REST Controller","https://www.jeejava.com/file-download-example-using-spring-rest-controller/");
 
         links.forEach((k,v) -> {
+            User u1 = users.get("user@gmail.com");
+            User u2 = users.get("super@gmail.com");
             Link link = new Link(k, v);
-            linkRepository.save(link);
 
-            // we will do something with comments later
-            Comment spring = new Comment("Thank you for this link related to Spring Boot. I love it, great post!", link);
-            Comment security = new Comment("I love that you are talking about Spring Security", link);
-            Comment pwa = new Comment("What is this Progressive Web App thing all about? PWAs sound really cool.", link);
+            if(k.startsWith("Build")){
+                link.setUser(u1);
+            }else {
+                link.setUser(u2);
+            }
+
+            linkService.save(link);
+
+            // adding comments
+            Comment spring = new Comment("Thank you for this link related to Spring Boot. I love it, great post!", link, u1);
+            Comment security = new Comment("I love that you are talking about Spring Security", link, u1);
+            Comment pwa = new Comment("What is this Progressive Web App thing all about? PWAs sound really cool.", link, u2);
             Comment[] comments = {spring, security, pwa};
             for(Comment comment : comments){
-                commentRepository.save(comment);
+                commentService.save(comment);
                 link.addComment(comment);
             }
         });
 
-        long linkCount = linkRepository.count();
+        long linkCount = linkService.count();
         System.out.println("Number of links in the database: " + linkCount );
     }
 
@@ -76,20 +87,24 @@ public class DatabaseLoader implements CommandLineRunner {
         String secret = "{bcrypt}" + encoder.encode("password");
 
         Role userRole = new Role("ROLE_USER");
-        roleRepository.save(userRole);
+        roleService.save(userRole);
         Role adminRole = new Role("ROLE_ADMIN");
-        roleRepository.save(adminRole);
+        roleService.save(adminRole);
 
-        User user = new User("user@gmail.com",secret,true);
+        User user = new User("user@gmail.com",secret,true,"Joe","User","joedirt");
         user.addRole(userRole);
-        userRepository.save(user);
+        userService.save(user);
+        users.put("user@gmail.com",user);
 
-        User admin = new User("admin@gmail.com",secret,true);
+        User admin = new User("admin@gmail.com",secret,true,"Joe","Admin","masteradmin");
+        admin.setAlias("joeadmin");
         admin.addRole(adminRole);
-        userRepository.save(admin);
+        userService.save(admin);
+        users.put("admin@gmail.com",admin);
 
-        User master = new User("master@gmail.com",secret,true);
+        User master = new User("super@gmail.com",secret,true,"Super","User","superduper");
         master.addRoles(new HashSet<>(Arrays.asList(userRole,adminRole)));
-        userRepository.save(master);
+        userService.save(master);
+        users.put("super@gmail.com",master);
     }
 }
