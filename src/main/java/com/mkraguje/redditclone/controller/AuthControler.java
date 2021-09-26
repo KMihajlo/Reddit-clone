@@ -1,7 +1,9 @@
 package com.mkraguje.redditclone.controller;
 
+import com.mkraguje.redditclone.model.User;
 import com.mkraguje.redditclone.service.UserService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
@@ -24,7 +26,9 @@ public class AuthControler {
     }
 
     @GetMapping("/register")
-    public String register(){
+    public String register(Model model){
+        model.addAttribute("user", new User());
+        model.addAttribute("success", false);
         return "auth/register";
     }
 }
