@@ -246,3 +246,14 @@ ________________________________________________________________*/
         text-align: right;
     }
 }
+@media(max-width: 767px) {
+    .form-horizontal{
+        width: 450px;
+    }
+    .form-main{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
