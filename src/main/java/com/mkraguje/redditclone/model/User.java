@@ -1,5 +1,6 @@
 package com.mkraguje.redditclone.model;
 
+import com.mkraguje.redditclone.model.validator.PasswordsMatch;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 @Getter @Setter
 @NoArgsConstructor
 @ToString
+@PasswordsMatch
 public class User implements UserDetails {
 
     @Id @GeneratedValue
@@ -57,9 +59,13 @@ public class User implements UserDetails {
     private String fullName;
 
     @NonNull
-    @NotEmpty(message = "Please enter a username")
+    @NotEmpty(message = "Please enter a Username")
     @Column(nullable = false, unique = true)
     private String alias;
+
+    @Transient
+    @NotEmpty(message = "Please enter Password Confirmation")
+    private String confirmPassword;
 
     public String getFullName(){
         return firstName + " " + lastName;
