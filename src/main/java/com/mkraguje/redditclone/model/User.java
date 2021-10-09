@@ -22,12 +22,14 @@ public class User implements UserDetails {
     private Long id;
 
     @NonNull
-    @Size(min = 8, max = 20)
+    @Size(min = 8, max = 20, message = "Invalid E-mail")
     @Column(nullable = false, unique = true)
     private String email;
 
     @NonNull
     @Column(length = 100)
+    @NotEmpty(message = "Password is required")
+    @Size(min = 8, message = "Password should have minimum 8 characters")
     private String password;
 
     @NonNull
@@ -43,11 +45,11 @@ public class User implements UserDetails {
     private Set<Role> roles = new HashSet<>();
 
     @NonNull
-    @NotEmpty(message = "You must enter First Name.")
+    @NotEmpty(message = "Please enter a First Name")
     private String firstName;
 
     @NonNull
-    @NotEmpty(message = "You must enter Last Name.")
+    @NotEmpty(message = "Please enter a Last Name")
     private String lastName;
 
     @Transient
@@ -55,7 +57,7 @@ public class User implements UserDetails {
     private String fullName;
 
     @NonNull
-    @NotEmpty(message = "Please enter alias.")
+    @NotEmpty(message = "Please enter a username")
     @Column(nullable = false, unique = true)
     private String alias;
 
