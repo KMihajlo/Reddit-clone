@@ -24,7 +24,7 @@ public class User implements UserDetails {
     private Long id;
 
     @NonNull
-    @Size(min = 8, max = 20, message = "Invalid E-mail")
+    @Size(min = 8, max = 50, message = "Invalid E-mail")
     @Column(nullable = false, unique = true)
     private String email;
 
@@ -66,6 +66,11 @@ public class User implements UserDetails {
     @Transient
     @NotEmpty(message = "Please enter Password Confirmation")
     private String confirmPassword;
+
+    private String activationCode;
+
+    @OneToMany(mappedBy = "user")
+    private List<Comment> comments = new ArrayList<>();
 
     public String getFullName(){
         return firstName + " " + lastName;

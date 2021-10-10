@@ -2,9 +2,11 @@ package com.mkraguje.redditclone.controller;
 
 import com.mkraguje.redditclone.model.Comment;
 import com.mkraguje.redditclone.model.Link;
+import com.mkraguje.redditclone.model.User;
 import com.mkraguje.redditclone.service.LinkService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -61,13 +63,15 @@ public class LinkController {
     public String createLink(@Valid Link link,
                              BindingResult bindingResult,
                              Model model,
-                             RedirectAttributes redirectAttributes){
+                             RedirectAttributes redirectAttributes,
+                             @AuthenticationPrincipal User user){
         if(bindingResult.hasErrors()){
             LOGGER.info("Validation errors were found while submitting a new link");
             model.addAttribute("link", link);
             return "/link/submit";
         }else{
             // save the link
+            link.setUser(user);
             linkService.save(link);
             LOGGER.info("New link was saved successfully");
             redirectAttributes

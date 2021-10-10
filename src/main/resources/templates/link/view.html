@@ -16,9 +16,9 @@
             <!-- link -->
             <div class="row link">
                 <div class="col-1">
-                    <div><a href="#" class="upvote"><i class="fas fa-arrow-up"></i></a></div>
-                    <div><span class="votecount">3</span></div>
-                    <div><a href="#" class="downvote"><i class="fas fa-arrow-down"></i></a></div>
+                    <div><a href="#" class="upvote" th:data-id="${link.id}"><i class="fas fa-arrow-up"></i></a></div>
+                    <div><span th:id="|votecount-${link.id}|" class="votecount" th:text="${link.getVoteCount()}">0</span></div>
+                    <div><a href="#" class="downvote" th:data-id="${link.id}" th:disabled="true"><i class="fas fa-arrow-down"></i></a></div>
                 </div>
                 <div class="col-11">
                     <p class="title">
@@ -64,8 +64,7 @@
                 <div class="row comment" th:each="comment : ${link.getComments()}">
                     <div class="col-1">&nbsp;</div>
                     <div class="col-11">
-                        <span><a th:href="@{'/u/' + ${comment.getUser().getAlias()}}" class="author" th:text="${comment.getUser().getAlias()}"><i class="far fa-user"></i> therealdanvega</a></span>
-                        <span class="clock" th:text="${comment.getPrettyTime()}"><i class="far fa-clock"></i> 4 hours ago</span>
+                        <span><a href="#" th:text="${comment.getUser().getAlias()}"><i class="far fa-user"></i> therealdanvega</a></span>                        <span class="clock" th:text="${comment.getPrettyTime()}"><i class="far fa-clock"></i> 4 hours ago</span>
                         <p class="body" th:text="${comment.getBody()}">It’s one thing I never care about, new releases of maven. Yet I do for most other things.. I really should take a look at any features released in the last while! Pull my dependencies, run my tests and upload to nexus. I don’t care for much else, I wonder what if any I’m missing.</p>
                         <a href="#" class="permalink"><i class="fas fa-link"></i> permalink</a>
                         <a href="#" class="like"><i class="far fa-thumbs-up"></i> Like</a>
@@ -77,5 +76,23 @@
         </div>
 
         <div th:replace="~{layouts/main_layout :: footer}"></div>
+
+        <script sec:authorize="isFullyAuthenticated()">
+            const allvotes = document.querySelectorAll(".upvote, .downvote");
+
+            for(let i=0; i<allvotes.length; i++) {
+                let className = allvotes[i].className;
+                allvotes[i].addEventListener('click',function (event) {
+                    const direction = className === 'upvote' ? 1 : -1;
+                    const linkID = this.getAttribute("data-id");
+                    const voteSum = document.getElementById('votecount-' + linkID);
+                    const voteSumValue = voteSum.innerHTML;
+                    fetch(`http://localhost:8080/vote/link/${linkID}/direction/${direction}/votecount/${voteSumValue}`)
+                        .then(response => response.json())
+                        .then(data => voteSum.innerHTML = data)
+                        .catch(err => console.error(err))
+                });
+            }
+        </script>
     </body>
 </html>

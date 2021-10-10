@@ -239,6 +239,11 @@ ________________________________________________________________*/
 .clock{
     font-size: 12.5px;
 }
+.input-group-addon{
+    display: flex !important;
+    align-items: center !important;
+    text-align: center !important;
+}
 /* Registration */
 @media(min-width: 768px) {
     .field-label-responsive {
