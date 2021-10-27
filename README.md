@@ -28,12 +28,11 @@
 <div style="display: flex; justify-content: space-between">
     <div>
         <p style="font-style: italic">Desktop</p>
-        <img alt="DesktopView" src="https://github.com/KMihajlo/Reddit-clone/blob/master/src/main/resources/static/images/desktopview.png"/>
+        <img alt="DesktopView" height="400" src="https://github.com/KMihajlo/Reddit-clone/blob/master/src/main/resources/static/images/desktopview.png"/>
     </div>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <div>
         <p style="font-style: italic">Mobile</p>
-        <img alt="MobileView" src="https://github.com/KMihajlo/Reddit-clone/blob/master/src/main/resources/static/images/mobileview.png"/>
+        <img alt="MobileView" height="400" src="https://github.com/KMihajlo/Reddit-clone/blob/master/src/main/resources/static/images/mobileview.png"/>
     </div>
 </div>
 
