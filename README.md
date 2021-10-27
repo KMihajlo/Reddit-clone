@@ -28,12 +28,12 @@
 <div style="display: flex; justify-content: space-between">
     <div>
         <p style="font-style: italic">Desktop</p>
-        <img alt="DesktopView" src="C:\Users\mkraguje\IdeaProjects\reddit-clone\src\main\resources\static\images\desktopview.png"/>
+        <img alt="DesktopView" src="https://github.com/KMihajlo/Reddit-clone/blob/master/src/main/resources/static/images/desktopview.png"/>
     </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <div>
         <p style="font-style: italic">Mobile</p>
-        <img alt="MobileView" src="C:\Users\mkraguje\IdeaProjects\reddit-clone\src\main\resources\static\images\mobileview.png"/>
+        <img alt="MobileView" src="https://github.com/KMihajlo/Reddit-clone/blob/master/src/main/resources/static/images/mobileview.png"/>
     </div>
 </div>
 
@@ -44,7 +44,7 @@
 <div>
     <div>
         <p style="font-style: italic"></p>
-        <img alt="DesktopView" src="C:\Users\mkraguje\IdeaProjects\reddit-clone\src\main\resources\static\images\sampleLink.png"/>
+        <img alt="DesktopView" src="https://github.com/KMihajlo/Reddit-clone/blob/master/src/main/resources/static/images/sampleLink.png"/>
     </div>
 </div>
 
@@ -52,12 +52,12 @@
 <div style="display: flex; justify-content: space-between">
     <div>
         <p style="font-style: italic">Frontend Validation</p>
-        <img alt="DesktopView" src="C:\Users\mkraguje\IdeaProjects\reddit-clone\src\main\resources\static\images\frontend_validation.png"/>
+        <img alt="DesktopView" src="https://github.com/KMihajlo/Reddit-clone/blob/master/src/main/resources/static/images/frontend_validation.png"/>
     </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <div>
         <p style="font-style: italic">Backend Validation</p>
-        <img alt="MobileView" src="C:\Users\mkraguje\IdeaProjects\reddit-clone\src\main\resources\static\images\backend_validation.png"/>
+        <img alt="MobileView" src="https://github.com/KMihajlo/Reddit-clone/blob/master/src/main/resources/static/images/backend_validation.png"/>
     </div>
 </div>
 
@@ -66,12 +66,12 @@
 <div style="display: flex; justify-content: space-between">
     <div>
         <p style="font-style: italic">Activation Email - is being sent when registered for the first time</p>
-        <img alt="DesktopView" src="C:\Users\mkraguje\IdeaProjects\reddit-clone\src\main\resources\static\images\activation_email.png"/>
+        <img alt="DesktopView" src="https://github.com/KMihajlo/Reddit-clone/blob/master/src/main/resources/static/images/activation_email.png"/>
     </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <div>
         <p style="font-style: italic">Welcome Email - is being sent when you activate your account</p>
-        <img alt="MobileView" src="C:\Users\mkraguje\IdeaProjects\reddit-clone\src\main\resources\static\images\welcome_email.png"/>
+        <img alt="MobileView" src="https://github.com/KMihajlo/Reddit-clone/blob/master/src/main/resources/static/images/welcome_email.png"/>
     </div>
 </div>
 
@@ -79,7 +79,7 @@
 <div>
     <div>
         <p style="font-style: italic"></p>
-        <img alt="DesktopView" src="C:\Users\mkraguje\IdeaProjects\reddit-clone\src\main\resources\static\images\profile_page.png"/>
+        <img alt="DesktopView" src="https://github.com/KMihajlo/Reddit-clone/blob/master/src/main/resources/static/images/profile_page.png"/>
     </div>
 </div>
 
