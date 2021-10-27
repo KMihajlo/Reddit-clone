@@ -76,7 +76,8 @@ public class LinkController {
             LOGGER.info("New link was saved successfully");
             redirectAttributes
                     .addAttribute("id", link.getId())
-                    .addFlashAttribute("success", true);
+                    .addFlashAttribute("success", true)
+                    .addFlashAttribute("isempty", false);
             return "redirect:/link/{id}";
         }
     }

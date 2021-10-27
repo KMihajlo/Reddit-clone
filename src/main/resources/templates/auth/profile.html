@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{layouts/main_layout :: head(title = 'Reddit Clone - Account Profile Page')}">
+    <link rel="stylesheet" th:href="@{/css/profile.css}">
 </head>
 <body>
 
@@ -11,77 +12,27 @@
     <div id="profile" class="container">
 
         <div class="row">
-            <ul class="nav">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Overview</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Posts</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Comments</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Preferences</a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="row">
-
             <div class="col-8">
-                <div class="row">
-                    <div class="card col-12" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">What's new in Spring Boot 2</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">submitted 7 days ago by therealdanvega</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="card-link">8 Comments</a>
-                            <a href="#" class="card-link">Share</a>
-                        </div>
+                <div class="row profile-title">
+                    <h4>Submited Links</h4>
+                </div>
+                <div class="row my-links" th:if="${isempty}">
+                    <div class="alert alert-danger" role="alert">
+                        No Links created. Are you ready to create your first link?
+                        <a class="alert-link" th:href="@{/link/submit}">Try it out!</a>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" th:if="!${isempty}" th:each="link : ${links}">
                     <div class="card col-12" style="width: 18rem;">
                         <div class="card-body">
-                            <h5 class="card-title">What's new in Spring Boot 2</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">submitted 7 days ago by therealdanvega</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="card-link">8 Comments</a>
-                            <a href="#" class="card-link">Share</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="card col-12" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">What's new in Spring Boot 2</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">submitted 7 days ago by therealdanvega</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="card-link">8 Comments</a>
-                            <a href="#" class="card-link">Share</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="card col-12" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">What's new in Spring Boot 2</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">submitted 7 days ago by therealdanvega</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="card-link">8 Comments</a>
-                            <a href="#" class="card-link">Share</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="card col-12" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">What's new in Spring Boot 2</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">submitted 7 days ago by therealdanvega</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="card-link">8 Comments</a>
-                            <a href="#" class="card-link">Share</a>
+                            <p class="title"><a class="title" th:href="@{'/link/' + ${link.id}}" th:text="${link.title}">What's new in Spring Boot 2</a></p>
+                            <p class="tagline ">submitted
+                                <!--<time title="Sat Mar 10 06:26:36 2018 UTC" datetime="2018-03-10T06:26:36+00:00" class="live-timestamp">2 hours ago</time> by-->
+                                <time th:title="${link.getCreationDate()}" th:datetime="${link.getCreationDate()}" class="live-timestamp" th:text="${link.getPrettyTime()}">1 hour(s)</time> by
+                                <a th:href="@{'/u/' + ${link.getUser().getAlias()}}" class="author" th:text="${link.getUser().getAlias()}">mkraguje</a>
+                            </p>
+                            <a th:href="@{'/link/' + ${link.id} + '#comments'}" class="comments" th:text="|${link.getComments().size()} comments|"><i class="fas fa-comments"></i> 0 comments</a>
+                            <a href="/" class="share"><i class="fas fa-share-square"></i> share</a>
                         </div>
                     </div>
                 </div>
@@ -89,14 +40,14 @@
             <!-- Right Side -->
             <div class="col-3 offset-1">
                 <div class="row">
-                    <div class="card col-12">
-                        <img class="card-img-top" th:src="@{/images/profile_icon.png}" alt="Card image cap">
-                        <div class="card-body">
-                            <p class="card-text">
-                                <a href="/u/therealdanvega">/u/therealdanvega</a>
-                            </p>
-                            <a href="../link/submit.html"><button type="button" class="btn btn-primary btn-lg btn-block">New Post</button></a>
-                        </div>
+                    <div class="card col-12" id="user-photo">
+                            <img id="photo" th:src="@{/images/profile_icon.png}" alt="Card image cap">
+                            <input type="file" id="file">
+                            <label for="file" id="upload-btn">Choose photo</label>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text" th:text="${user.getAlias()}">therealdanvega</p>
+                        <a th:href="@{/link/submit}" class="btn btn-success btn-lg btn-block">New Post</a>
                     </div>
                 </div>
                 <div class="row">
@@ -105,23 +56,11 @@
                         <div class="card-body">
                             <h5 class="card-title">Your Information</h5>
                             <p class="card-text">
-                                Posts: 10<br/>
-                                Comments: 3<br/>
-                                User Since: November 23, 2017<br/>
+                                <p th:text="|Posts: ${links.size()}|">Posts: 10</p>
+                                <p th:text="|Comments: ${user.getCommentsCount()}|">Comments: 3</p>
+                                <p th:text="|User Since: ${user.getCreationDate().toString().substring(0, 10)}|">User Since: </p>
                             </p>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="card col-12">
-                        <h5 class="card-title recentLinks">Recent Links Clicked</h5>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><a href="#">What's new in Spring Boot 2</a></li>
-                            <li class="list-group-item"><a href="#">10 Features in Java 10</a></li>
-                            <li class="list-group-item"><a href="#">9 Features in Java 9</a></li>
-                            <li class="list-group-item"><a href="#">8 Features in Java 8</a></li>
-                            <li class="list-group-item"><a href="#">7 Reasons not to use Java 7</a></li>
-                        </ul>
                     </div>
                 </div>
             </div>

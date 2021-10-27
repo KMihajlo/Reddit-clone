@@ -244,6 +244,50 @@ ________________________________________________________________*/
     align-items: center !important;
     text-align: center !important;
 }
+.card-text{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.profile-title{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.my-links{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+#user-photo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50% !important;
+    overflow: hidden;
+}
+#photo{
+    width: 115%;
+    height: 100%;
+}
+#file{
+    display: none;
+}
+#upload-btn{
+    height: 25%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7);
+    color: whitesmoke;
+    line-height: 30px;
+    font-family: sans-serif;
+    font-size: medium;
+    margin-bottom: 0 !important;
+}
 /* Registration */
 @media(min-width: 768px) {
     .field-label-responsive {

@@ -1,9 +1,12 @@
 package com.mkraguje.redditclone.controller;
 
+import com.mkraguje.redditclone.model.Link;
 import com.mkraguje.redditclone.model.User;
+import com.mkraguje.redditclone.service.LinkService;
 import com.mkraguje.redditclone.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -21,9 +25,11 @@ public class AuthController {
     private static final Logger LOGGER = LoggerFactory.getLogger(AuthController.class);
 
     private UserService userService;
+    private LinkService linkService;
 
-    public AuthController(UserService userService) {
+    public AuthController(UserService userService, LinkService linkService) {
         this.userService = userService;
+        this.linkService = linkService;
     }
 
     @GetMapping("/login")
@@ -32,7 +38,16 @@ public class AuthController {
     }
 
     @GetMapping("/profile")
-    public String profile(){
+    public String profile(Model model, @AuthenticationPrincipal User user){
+        LOGGER.info("'/' Route invoked...");
+        List<Link> links = linkService.findByUser(user);
+        model.addAttribute("links", links);
+        if(links.size() == 0){
+            model.addAttribute("isempty", true);
+        }else{
+            model.addAttribute("isempty", false);
+        }
+        model.addAttribute("user", user);
         return "auth/profile";
     }
 

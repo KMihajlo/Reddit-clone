@@ -1,6 +1,7 @@
 package com.mkraguje.redditclone.service;
 
 import com.mkraguje.redditclone.model.Link;
+import com.mkraguje.redditclone.model.User;
 import com.mkraguje.redditclone.repository.LinkRepository;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,10 @@ public class LinkService {
 
     public Optional<Link> findById(Long id){
         return linkRepository.findById(id);
+    }
+
+    public List<Link> findByUser(User user) {
+        return linkRepository.findByUser(user);
     }
 
     public Link save(Link link){

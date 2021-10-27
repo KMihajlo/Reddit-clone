@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @ToString
 @PasswordsMatch
-public class User implements UserDetails {
+public class User extends Auditable implements UserDetails {
 
     @Id @GeneratedValue
     private Long id;
@@ -71,6 +71,8 @@ public class User implements UserDetails {
 
     @OneToMany(mappedBy = "user")
     private List<Comment> comments = new ArrayList<>();
+
+    private int commentsCount = 0;
 
     public String getFullName(){
         return firstName + " " + lastName;

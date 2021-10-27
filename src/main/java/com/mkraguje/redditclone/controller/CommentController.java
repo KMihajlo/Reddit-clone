@@ -2,7 +2,6 @@ package com.mkraguje.redditclone.controller;
 
 import com.mkraguje.redditclone.model.Comment;
 import com.mkraguje.redditclone.model.User;
-import com.mkraguje.redditclone.repository.CommentRepository;
 import com.mkraguje.redditclone.service.CommentService;
 import com.mkraguje.redditclone.service.LinkService;
 import org.slf4j.Logger;
@@ -36,6 +35,8 @@ public class CommentController {
         }else {
             comment.setUser(user);
             commentService.save(comment);
+            int updatedCount = user.getCommentsCount()+1;
+            user.setCommentsCount(updatedCount);
             LOGGER.info("New comment was successfully saved.");
         }
         return "redirect:/link/" + comment.getLink().getId();
