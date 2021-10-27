@@ -13,6 +13,8 @@ public class EmailConfiguration {
     private String username;
     @Value("${spring.mail.password}")
     private String password;
+    @Value("${base.url}")
+    private String BASE_URL;
 
     public String getHost() {
         return host;
@@ -44,6 +46,14 @@ public class EmailConfiguration {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getBASE_URL() {
+        return BASE_URL;
+    }
+
+    public void setBASE_URL(String BASE_URL) {
+        this.BASE_URL = BASE_URL;
     }
 
     @Override

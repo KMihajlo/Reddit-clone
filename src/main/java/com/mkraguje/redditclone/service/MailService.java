@@ -24,7 +24,6 @@ public class MailService {
     private EmailConfiguration emailConfiguration;
 
     private final SpringTemplateEngine templateEngine;
-    private final String BASE_URL = "http://localhost:8080";
 
     private final Logger LOGGER = LoggerFactory.getLogger(MailService.class);
 
@@ -67,7 +66,7 @@ public class MailService {
         Locale locale = Locale.ENGLISH;
         Context context = new Context(locale);
         context.setVariable("user", user);
-        context.setVariable("baseURL", BASE_URL);
+        context.setVariable("baseURL", emailConfiguration.getBASE_URL());
         String content = templateEngine.process(templateName,context);
         sendEmail(user.getEmail(),subject,content,false,true);
     }
@@ -84,12 +83,4 @@ public class MailService {
         sendEmailFromTemplate(user, "email/welcome", "Welcome new Reddit Clone User!");
     }
 
-//    public void sendMessage(String to, String from, String subject, String text) {
-//        SimpleMailMessage message = new SimpleMailMessage();
-//        message.setTo(to);
-//        message.setSubject(subject);
-//        message.setText(text);
-//        message.setFrom(from);
-//        getJavaMailSender().send(message);
-//    }
 }
