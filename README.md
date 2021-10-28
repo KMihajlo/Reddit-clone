@@ -22,19 +22,22 @@
 * MySQL
 
 ---
-`list.html` - Initial frontpage
+
+&nbsp;&nbsp; `list.html` - Initial frontpage
+
 * created `main_layout` page, which is reused on every page
 * made the application responsive using media queries
-<div style="display: flex; justify-content: space-between">
-    <div>
-        <p style="font-style: italic">Desktop</p>
-        <img alt="DesktopView" height="400" src="https://github.com/KMihajlo/Reddit-clone/blob/master/src/main/resources/static/images/desktopview.png"/>
-    </div>
-    <div>
-        <p style="font-style: italic">Mobile</p>
-        <img alt="MobileView" height="400" src="https://github.com/KMihajlo/Reddit-clone/blob/master/src/main/resources/static/images/mobileview.png"/>
-    </div>
-</div>
+
+  <table>
+  <tr>
+    <td>Desktop view</td>
+     <td>Mobile view</td>
+  </tr>
+  <tr>
+    <td><img alt="DesktopView" src="https://github.com/KMihajlo/Reddit-clone/blob/master/src/main/resources/static/images/desktopview.png"/></td>
+    <td><img alt="MobileView" src="https://github.com/KMihajlo/Reddit-clone/blob/master/src/main/resources/static/images/mobileview.png"/></td>
+  </tr>
+ </table>
 
 `view.html` - View of a single link with comments
 * used PrettyTime to convert the date
@@ -43,36 +46,35 @@
 <div>
     <div>
         <p style="font-style: italic"></p>
-        <img alt="DesktopView" src="https://github.com/KMihajlo/Reddit-clone/blob/master/src/main/resources/static/images/sampleLink.png"/>
+        <img alt="SampleLink" src="https://github.com/KMihajlo/Reddit-clone/blob/master/src/main/resources/static/images/sampleLink.png"/>
     </div>
 </div>
 
 `register.html` - Register page
-<div style="display: flex; justify-content: space-between">
-    <div>
-        <p style="font-style: italic">Frontend Validation</p>
-        <img alt="DesktopView" src="https://github.com/KMihajlo/Reddit-clone/blob/master/src/main/resources/static/images/frontend_validation.png"/>
-    </div>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <div>
-        <p style="font-style: italic">Backend Validation</p>
-        <img alt="MobileView" src="https://github.com/KMihajlo/Reddit-clone/blob/master/src/main/resources/static/images/backend_validation.png"/>
-    </div>
-</div>
+<table>
+  <tr>
+    <td>Frontend validation</td>
+     <td>Backend validation</td>
+  </tr>
+  <tr>
+    <td><img alt="FrontendValidation" src="https://github.com/KMihajlo/Reddit-clone/blob/master/src/main/resources/static/images/frontend_validation.png"/></td>
+    <td><img alt="BackendValidation" src="https://github.com/KMihajlo/Reddit-clone/blob/master/src/main/resources/static/images/backend_validation.png"/></td>
+  </tr>
+ </table>
 
 `activation.html` & `welcome.html` - Manually created email templates
 * tested using Mailtrap
-<div style="display: flex; justify-content: space-between">
-    <div>
-        <p style="font-style: italic">Activation Email - is being sent when registered for the first time</p>
-        <img alt="DesktopView" src="https://github.com/KMihajlo/Reddit-clone/blob/master/src/main/resources/static/images/activation_email.png"/>
-    </div>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <div>
-        <p style="font-style: italic">Welcome Email - is being sent when you activate your account</p>
-        <img alt="MobileView" src="https://github.com/KMihajlo/Reddit-clone/blob/master/src/main/resources/static/images/welcome_email.png"/>
-    </div>
-</div>
+<br>
+<table>
+  <tr>
+    <td>Activation Email - is being sent when registered for the first time</td>
+     <td>Welcome Email - is being sent when you activate your account</td>
+  </tr>
+  <tr>
+    <td><img alt="ActivationEmail" src="https://github.com/KMihajlo/Reddit-clone/blob/master/src/main/resources/static/images/activation_email.png"/></td>
+    <td><img alt="WelcomeEmail" src="https://github.com/KMihajlo/Reddit-clone/blob/master/src/main/resources/static/images/welcome_email.png"/></td>
+  </tr>
+ </table>
 
 `profile.html` - Profile page for every user
 <div>
